@@ -1,9 +1,8 @@
 package com.mdsreactnative;
 
 import androidx.annotation.NonNull;
-import androidx.support.annotation.NonNull;
-import androidx.support.annotation.Nullable;
-import androidx.util.Log;
+import androidx.annotation.Nullable;
+import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
