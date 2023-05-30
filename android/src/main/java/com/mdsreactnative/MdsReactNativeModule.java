@@ -57,7 +57,7 @@ public class MdsReactNativeModule extends ReactContextBaseJavaModule {
 
 // TODO: DELETE END
 
-  private final String LOG_TAG = RNMdsModule.class.getSimpleName();
+  private final String LOG_TAG = MdsReactNativeModule.class.getSimpleName();
 
   private ReactApplicationContext mContext;
   private Mds mds;
