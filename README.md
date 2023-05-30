@@ -1,5 +1,7 @@
 # mds-react-native
 
+PROJECT NOT WORKING YET!
+
 Movesense sensor library update for RN under Lince plus
 
 ## Installation
