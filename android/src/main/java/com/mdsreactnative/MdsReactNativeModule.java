@@ -2,14 +2,15 @@ package com.mdsreactnative;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.module.annotations.ReactModule;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.movesense.mds.Logger;
 import com.movesense.mds.Mds;
@@ -25,7 +26,7 @@ import java.util.Map;
 @ReactModule(name = MdsReactNativeModule.NAME)
 public class MdsReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "MdsReactNative";
-// TODO: DELETE START
+
   public MdsReactNativeModule(ReactApplicationContext reactContext) {
     super(reactContext);
     mContext = reactContext;

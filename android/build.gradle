@@ -2,7 +2,6 @@ buildscript {
   repositories {
     google()
     mavenCentral()
-    jcenter()
   }
 
   dependencies {
@@ -13,7 +12,7 @@ allprojects {
   repositories {
     jcenter()
     flatDir {
-      dirs './', '../Movesense/' // Folders to look for jar & aar libraries
+      dirs 'libs'
     }
     google()
     maven { url 'https://jitpack.io' }
@@ -24,6 +23,7 @@ def isNewArchitectureEnabled() {
 }
 
 apply plugin: "com.android.library"
+
 
 def appProject = rootProject.allprojects.find { it.plugins.hasPlugin('com.android.application') }
 
@@ -67,7 +67,9 @@ android {
 repositories {
   mavenCentral()
   google()
-  jcenter()
+  flatDir {
+    dirs 'libs'
+  }
 }
 
 
@@ -76,7 +78,10 @@ dependencies {
   // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
-  implementation(name: 'mdslib', version: '+', ext: 'aar')
+//  implementation files('libs/mdslib-1.68.0(1)-release/classes.jar')
+//  implementation files('libs/mdslib-1.68.0(1)-release.aar')
+  implementation files('libs/mdslib-1.68.0(1)-release.aar')
+//  implementation (name: 'mdslib', version: '+', ext: 'aar')
   implementation "com.polidea.rxandroidble2:rxandroidble:1.17.0"
 }
 
