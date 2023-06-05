@@ -26,19 +26,24 @@ import java.util.Map;
 @ReactModule(name = MdsReactNativeModule.NAME)
 public class MdsReactNativeModule extends ReactContextBaseJavaModule {
   public static final String NAME = "MdsReactNative";
+  private final String LOG_TAG = MdsReactNativeModule.class.getSimpleName();
+  private ReactApplicationContext mContext;
+  private Mds mds;
+  private BleScanner scanner;
+  private Map<String, MdsSubscription> subscriptionMap;
 
   public MdsReactNativeModule(ReactApplicationContext reactContext) {
     super(reactContext);
     mContext = reactContext;
-    mds = Mds.builder().build(reactContext);
     Logger.setPipeToOSLoggingEnabled(true);
     subscriptionMap = new HashMap<>();
-    scanner = new BleScanner(reactContext, new BleScanListener() {
-      @Override
-      public void onDeviceFound(@NonNull String name, @NonNull String address) {
-        handleScanResult(name, address);
-      }
-    });
+//    mds = Mds.builder().build(reactContext);
+//    scanner = new BleScanner(reactContext, new BleScanListener() {
+//      @Override
+//      public void onDeviceFound(@NonNull String name, @NonNull String address) {
+//        handleScanResult(name, address);
+//      }
+//    });
   }
 
   @Override
@@ -57,13 +62,7 @@ public class MdsReactNativeModule extends ReactContextBaseJavaModule {
 
 // TODO: DELETE END
 
-  private final String LOG_TAG = MdsReactNativeModule.class.getSimpleName();
 
-  private ReactApplicationContext mContext;
-  private Mds mds;
-  private BleScanner scanner;
-
-  private Map<String, MdsSubscription> subscriptionMap;
 
 
   @ReactMethod
@@ -185,37 +184,29 @@ public class MdsReactNativeModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void unsubscribe(String key) {
     MdsSubscription subscription = subscriptionMap.get(key);
-
     subscription.unsubscribe();
     subscriptionMap.remove(key);
   }
 
   private void sendNotificationEvent(String key, String notification) {
     WritableMap params = Arguments.createMap();
-
     params.putString("key", key);
     params.putString("notification", notification);
-
     sendEvent("newNotification", params);
   }
 
   private void sendNotificationErrorEvent(String key, String error) {
     WritableMap params = Arguments.createMap();
-
     params.putString("key", key);
     params.putString("error", error);
-
     sendEvent("newNotificationError", params);
   }
 
 
   private void handleScanResult(String name, String address) {
-
     WritableMap params = Arguments.createMap();
-
     params.putString("name", name);
     params.putString("address", address);
-
     sendEvent("newScannedDevice", params);
   }
 
