@@ -1,14 +1,15 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'mds-react-native';
+// import { multiply } from 'mds-react-native';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const result= 666;
+  // const [result, setResult] = React.useState<number | undefined>(999);
 
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  // React.useEffect(() => {
+  //   multiply(3, 7).then(setResult);
+  // }, []);
 
   return (
     <View style={styles.container}>
